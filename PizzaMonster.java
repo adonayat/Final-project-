@@ -26,12 +26,10 @@ public class PizzaMonster {
             Scanner scan = new Scanner(file);
             // scan contents in to variable
             while (scan.hasNext() != scan.hasNext("end")) {
-                int i = 0;
                 String data = scan.nextLine();
-                itemName.set(i, data.substring(0, data.indexOf(":")));
-                amount.set(i, Integer.parseInt(data.substring(data.indexOf(":") + 2, data.indexOf(","))));
-                cost.set(i, Double.parseDouble(data.substring(data.indexOf(",") + 2, data.length())));
-                i++;
+                itemName.add(data.substring(0, data.indexOf(":")));
+                amount.add(Integer.parseInt(data.substring(data.indexOf(":") + 2, data.indexOf(","))));
+                cost.add(Double.parseDouble(data.substring(data.indexOf(",") + 2, data.length())));
                 //System.out.println(data);
             }
             for (int y = 0; y < itemName.size(); y++){
@@ -40,19 +38,23 @@ public class PizzaMonster {
             scan.nextLine();
             while (scan.hasNext() != scan.hasNext("end")) {
                 String data = scan.nextLine();
-                int n = 0;
-                weeklyItemName.set(n, data.substring(0, data.indexOf(":")));
-                weeklyAmount.set(n, Integer.parseInt(data.substring(data.indexOf(":") + 2, data.indexOf(","))));
-                weeklyCost.set(n, Double.parseDouble(data.substring(data.indexOf(",") + 2, data.length())));
-                n++;
+                weeklyItemName.add(data.substring(0, data.indexOf(":")));
+                weeklyAmount.add(Integer.parseInt(data.substring(data.indexOf(":") + 2, data.indexOf(","))));
+                weeklyCost.add(Double.parseDouble(data.substring(data.indexOf(",") + 2, data.length())));
                 //System.out.println(weeklyItemName + " " + weeklyAmount + " " + weeklyCost);
                 //System.out.println(data);
             }
         } catch (FileNotFoundException e) {
             System.out.println("No file found");
         }
-
-
+        for(int i = 0; i < itemName.size(); i++) {
+            System.out.println(itemName.get(i));
+            System.out.println(amount.get(i));
+            System.out.println(cost.get(i));
+            System.out.println(weeklyItemName.get(i));
+            System.out.println(weeklyAmount.get(i));
+            System.out.println(weeklyCost.get(i));
+        }
         //create menu
         JMenuBar menuBar = new JMenuBar();
         // add the file menu
