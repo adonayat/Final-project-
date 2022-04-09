@@ -47,14 +47,7 @@ public class PizzaMonster {
         } catch (FileNotFoundException e) {
             System.out.println("No file found");
         }
-        for(int i = 0; i < itemName.size(); i++) {
-            System.out.println(itemName.get(i));
-            System.out.println(amount.get(i));
-            System.out.println(cost.get(i));
-            System.out.println(weeklyItemName.get(i));
-            System.out.println(weeklyAmount.get(i));
-            System.out.println(weeklyCost.get(i));
-        }
+
         //create menu
         JMenuBar menuBar = new JMenuBar();
         // add the file menu
