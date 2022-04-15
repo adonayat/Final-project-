@@ -7,7 +7,7 @@ import java.util.Scanner;
 import java.awt.event.*;
 
 public class PizzaMonster {
-    private JLabel statusLabel;
+    private JTextArea statusLabel;
     private JFrame frame;
 
     public PizzaMonster() {
@@ -22,15 +22,18 @@ public class PizzaMonster {
     private void prepareGUI() {
         frame = new JFrame("Lab 12: GUI Exercise");
         frame.setSize(400,400);
-        statusLabel = new JLabel("",JLabel.CENTER);
+        statusLabel = new JTextArea();
+        statusLabel.setBounds(10,30, 200,200);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         frame.add(statusLabel);
+        frame.setLayout(null);
         frame.setVisible(true);
     }
 
     private void showMenuDemo() {
+        String list = "";
         //create ArrayList
         ArrayList<String> itemName = new ArrayList<String>();
         ArrayList<Integer> amount = new ArrayList<Integer>();
@@ -63,17 +66,24 @@ public class PizzaMonster {
         } catch (FileNotFoundException e) {
             System.out.println("No file found");
         }
-        //set size of window
+
+        //format string
+        for(int i = 0; i < itemName.size(); i++){
+            list = list + String.format(itemName.get(i) + " " + amount.get(i) + " " + cost.get(i) + "\n");
+        }
 
         //create menu
         JMenuBar menuBar = new JMenuBar();
-        JMenu file = new JMenu("File");
+        JMenu file = new JMenu("Mode");
+        JMenuItem open = new JMenuItem("Inventory", null);
+        open.setActionCommand(list);
         JMenuItem exit = new JMenuItem("Exit", null);
-        JMenuItem open = new JMenuItem("Open", null);
+        exit.setActionCommand("Exit");
 
         //create button
         ButtonListener listen = new ButtonListener();
         open.addActionListener(listen);
+        exit.addActionListener(listen);
 
         //add menu
         file.add(open);
@@ -94,8 +104,13 @@ public class PizzaMonster {
 
     class ButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            statusLabel.setText(" JMenuItem clicked.");
-            System.out.println("t");
+
+            statusLabel.setText(e.getActionCommand());
+        }
+        public void Exit(ActionEvent q) {
+            if(q.getActionCommand() == "Exit") {
+                System.exit(0);
+            }
         }
     }
 }
