@@ -13,7 +13,8 @@ public class PizzaMonster {
     private JMenuItem exit;
     private JMenuItem login;
     private JMenuItem addItem;
-    private JLabel label;
+    private JLabel productName;
+    private JTextField name;
     private boolean manager = false;
 
     public PizzaMonster() {
@@ -27,14 +28,22 @@ public class PizzaMonster {
 
     private void prepareGUI() {
         frame = new JFrame("Lab 12: GUI Exercise");
-        frame.setSize(1000,600);
+        frame.setSize(800,600);
         statusLabel = new JTextArea();
         statusLabel.setBounds(10,30, 400,400);
         statusLabel.setEditable(false);
 
+        productName = new JLabel("Name of Order");
+        productName.setBounds(524, 50, 100,30);
+
+        name = new JTextField();
+        name.setBounds(524, 75, 180, 19);
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         frame.add(statusLabel);
+        frame.add(productName);
+        frame.add(name);
         frame.setLayout(null);
         frame.setVisible(true);
     }
@@ -52,7 +61,7 @@ public class PizzaMonster {
 
         //read file to variables
         try {
-            File file = new File("InventoryExample.txt");
+            File file = new File("C:\\Users\\jlagr\\eclipse-workspace\\TestingGUI2\\src\\InventoryExample.txt");
             Scanner scan = new Scanner(file);
 
             //scan name, amount, and cost in to variable
@@ -133,31 +142,28 @@ public class PizzaMonster {
             JMenuItem actionSource = (JMenuItem) e.getSource();
             JFrame f=new JFrame();
 
-            if(actionSource.equals(open)){
+            //print inventory
+            if(actionSource.equals(open))
                 statusLabel.setText(e.getActionCommand());
-            } else if (actionSource.equals(exit)) {
+            else if (actionSource.equals(exit)) //ends program
                 System.exit(0);
-            }
-            else if (actionSource.equals(weekly)) {
-                if (manager == true){
+            else if (actionSource.equals(weekly)) { //print results
+                if (manager == true)
                     statusLabel.setText(e.getActionCommand());
-                }
-                else{
-                    JOptionPane.showMessageDialog(f,"Password Incorrect");
-                }
+                else
+                    JOptionPane.showMessageDialog(f,"You do not have Access");
             }
-            else if (actionSource.equals(login)) {
-                if(manager == true){
+            else if (actionSource.equals(login)) { //makes user manager
+                if(manager == true)
                     manager = false;
-                }
-                else {
-                    String password = JOptionPane.showInputDialog(f,"Enter Name");
-                    if (password.equals(12345)){
+                else { //check if user knows password
+                    String password = JOptionPane.showInputDialog(f,"Enter Password");
+                    //set them as manager
+                    String p = "12345";
+                    if (password.equals(p))
                         manager = true;
-                    }
-                    else{
+                    else
                         JOptionPane.showMessageDialog(f,"Password Incorrect");
-                    }
                 }
             }
             else if (actionSource.equals(addItem)){
@@ -166,9 +172,8 @@ public class PizzaMonster {
                     JOptionPane.showInputDialog(f,"Enter Amount");
                     JOptionPane.showInputDialog(f,"Enter Price of Individual Item");
                 }
-                else{
-                    JOptionPane.showMessageDialog(f,"Password Incorrect");
-                }
+                else
+                    JOptionPane.showMessageDialog(f,"You do not have Access");
             }
         }
     }
