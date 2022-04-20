@@ -11,7 +11,10 @@ public class PizzaMonster {
     private JMenuItem open;
     private JMenuItem weekly;
     private JMenuItem exit;
+    private JMenuItem login;
+    private JMenuItem addItem;
     private JLabel label;
+    private boolean manager = false;
 
     public PizzaMonster() {
         prepareGUI();
@@ -84,26 +87,35 @@ public class PizzaMonster {
 
         //create menu
         JMenuBar menuBar = new JMenuBar();
-        JMenu file = new JMenu("Mode");
+        JMenu file = new JMenu("Product");
+        JMenu man = new JMenu("Manager");
+        login = new JMenuItem("Login/Logout", null);
         open = new JMenuItem("Inventory", null);
         open.setActionCommand(list);
         weekly =new JMenuItem("Weekly", null);
         weekly.setActionCommand(listWeekly);
+        addItem = new JMenuItem("Add Inven.");
         exit = new JMenuItem("Exit", null);
 
         //create button
         ButtonListener listen = new ButtonListener();
         open.addActionListener(listen);
         weekly.addActionListener(listen);
+        addItem.addActionListener(listen);
         exit.addActionListener(listen);
+        login.addActionListener(listen);
 
         //add menu
         file.add(open);
         file.add(weekly);
+        file.add(addItem);
         file.add(exit);
+
+        man.add(login);
 
         //add file to the menubar
         menuBar.add(file);
+        menuBar.add(man);
 
         // add the menuBar to the window
         frame.setJMenuBar(menuBar);
@@ -119,6 +131,7 @@ public class PizzaMonster {
         public void actionPerformed(ActionEvent e) {
 
             JMenuItem actionSource = (JMenuItem) e.getSource();
+            JFrame f=new JFrame();
 
             if(actionSource.equals(open)){
                 statusLabel.setText(e.getActionCommand());
@@ -126,7 +139,36 @@ public class PizzaMonster {
                 System.exit(0);
             }
             else if (actionSource.equals(weekly)) {
-                statusLabel.setText(e.getActionCommand());
+                if (manager == true){
+                    statusLabel.setText(e.getActionCommand());
+                }
+                else{
+                    JOptionPane.showMessageDialog(f,"Password Incorrect");
+                }
+            }
+            else if (actionSource.equals(login)) {
+                if(manager == true){
+                    manager = false;
+                }
+                else {
+                    String password = JOptionPane.showInputDialog(f,"Enter Name");
+                    if (password.equals(12345)){
+                        manager = true;
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(f,"Password Incorrect");
+                    }
+                }
+            }
+            else if (actionSource.equals(addItem)){
+                if (manager == true){
+                    JOptionPane.showInputDialog(f,"Enter Name of Product");
+                    JOptionPane.showInputDialog(f,"Enter Amount");
+                    JOptionPane.showInputDialog(f,"Enter Price of Individual Item");
+                }
+                else{
+                    JOptionPane.showMessageDialog(f,"Password Incorrect");
+                }
             }
         }
     }
