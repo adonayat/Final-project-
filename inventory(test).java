@@ -44,7 +44,7 @@ public class Inventory implements Serializable {
 	                }
 	                else{
 	                    volume = fileread.nextInt();
-	                    stocks[i] = new Stock(productname, company, price, volume);
+	                    stocks[i] = new Stock(productname, price, volume);
 	                    line = 1;
 	                }
 	                i++;

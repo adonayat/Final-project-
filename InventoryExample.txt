@@ -1,9 +1,27 @@
-Pizza: 20, 8.00
-DeepDeepDish: 6, 18.00
-Detroit Style Pizza: 10, 14.00
+Pizza
+20
+8.00
+
+DeepDeepDish
+6
+18.00
+
+Detroit Style Pizza
+10
+14.00
+
 end
-DeepDeepDish: 10, 180.00
-Pizza: 5, 40.00
-Detroit Style Pizza: 1, 14.00
+
+DeepDeepDish
+10
+180.00
+
+Pizza
+5
+40.00
+
+Detroit Style Pizza
+1
+14.00
+
 end
-tnevreslufhtiafdnadoog
