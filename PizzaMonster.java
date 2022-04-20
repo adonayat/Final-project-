@@ -61,7 +61,7 @@ public class PizzaMonster {
 
         //read file to variables
         try {
-            File file = new File("C:\\Users\\jlagr\\eclipse-workspace\\TestingGUI2\\src\\InventoryExample.txt");
+            File file = new File("InventoryExample.txt");
             Scanner scan = new Scanner(file);
 
             //scan name, amount, and cost in to variable
