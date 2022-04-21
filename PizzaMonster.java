@@ -65,20 +65,38 @@ public class PizzaMonster {
             Scanner scan = new Scanner(file);
 
             //scan name, amount, and cost in to variable
-            while (scan.hasNext() != scan.hasNext("end")) {
-                String data = scan.nextLine();
-                itemName.add(data.substring(0, data.indexOf(":")));
-                amount.add(Integer.parseInt(data.substring(data.indexOf(":") + 2, data.indexOf(","))));
-                cost.add(Double.parseDouble(data.substring(data.indexOf(",") + 2, data.length())));
+            for(int j = 0; j > -1; j++)
+            {
+                String end = scan.nextLine();
+                if (end.equals("end"))
+                {
+                    break;
+                }
+                for(int i = 0; i < 1; i++)
+                {
+                    itemName.add(end);
+                    amount.add(Integer.parseInt(scan.nextLine()));
+                    cost.add(Double.parseDouble(scan.nextLine()));
+                    scan.nextLine();
+                }
             }
             scan.nextLine();
 
             //scan name, weekly amount and cost in to variable
-            while (scan.hasNext() != scan.hasNext("end")) {
-                String data = scan.nextLine();
-                weeklyItemName.add(data.substring(0, data.indexOf(":")));
-                weeklyAmount.add(Integer.parseInt(data.substring(data.indexOf(":") + 2, data.indexOf(","))));
-                weeklyCost.add(Double.parseDouble(data.substring(data.indexOf(",") + 2, data.length())));
+            for(int j = 0; j > -1; j++)
+            {
+                String end = scan.nextLine();
+                if (end.equals("end"))
+                {
+                    break;
+                }
+                for(int i = 0; i < 1; i++)
+                {
+                    weeklyItemName.add(end);
+                    weeklyAmount.add(Integer.parseInt(scan.nextLine()));
+                    weeklyCost.add(Double.parseDouble(scan.nextLine()));
+                    scan.nextLine();
+                }
             }
         } catch (FileNotFoundException e) {
             System.out.println("No file found");
