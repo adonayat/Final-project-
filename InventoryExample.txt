@@ -10,18 +10,3 @@ Detroit Style Pizza
 10
 14.00
 
-end
-
-DeepDeepDish
-10
-180.00
-
-Pizza
-5
-40.00
-
-Detroit Style Pizza
-1
-14.00
-
-end
