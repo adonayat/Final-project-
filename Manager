@@ -1,8 +1,4 @@
 
-
-
-
-
 public class Manager {
     String Name;
     String p;

@@ -32,11 +32,21 @@
 			String name = "";
 			int stock = 0;
 			double price = 0;
-			for(int i = 0; i < 3; i++)
+			for(int j = 0; j > -1; j++)
 			{
-				name = in.nextLine();
-				stock = Integer.parseInt(in.nextLine());
-				price = Double.parseDouble(in.nextLine());
+				String end = in.nextLine();
+				if (end.equals("end"))
+				{
+					break;
+				}
+				for(int i = 0; i < 1; i++)
+				{
+					name = end;
+					stock = Integer.parseInt(in.nextLine());
+					price = Double.parseDouble(in.nextLine());
+					in.nextLine();
+				}
+				stocks[j] = new Stock(name,stock,price);
 			}
 	    }
 	public static int generateBill(){
