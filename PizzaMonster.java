@@ -4,6 +4,9 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.awt.event.*;
+import java.io.PrintWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Random;
 
 public class PizzaMonster {
@@ -62,7 +65,7 @@ public class PizzaMonster {
 
         //read file to variables
         try {
-            File file = new File("InventoryExample.txt");
+            File file = new File("inventory.txt");
             Scanner scan = new Scanner(file);
 
             //scan name, amount, and cost in to variable
@@ -79,14 +82,15 @@ public class PizzaMonster {
                     amount.add(Integer.parseInt(scan.nextLine()));
                     double c = Double.parseDouble(scan.nextLine());
                     cost.add(c);
-                    scan.nextLine();
                     weeklyItemName.add(end);
                     Random rn = new Random();
                     weeklyAmount.add(rn.nextInt(30)+1);
                     weeklyCost.add(c);
-
                 }
-                if(scan.hasNext()){}
+                if(scan.hasNext())
+                {
+                    scan.nextLine();
+                }
                 else
                 {
                     break;
@@ -180,13 +184,41 @@ public class PizzaMonster {
             }
             else if (actionSource.equals(addItem)){
                 if (manager == true){
-                    JOptionPane.showInputDialog(f,"Enter Name of Product");
-                    JOptionPane.showInputDialog(f,"Enter Amount");
-                    JOptionPane.showInputDialog(f,"Enter Price of Individual Item");
+                    String product = JOptionPane.showInputDialog(f,"Enter Name of Product");
+                    String amount = JOptionPane.showInputDialog(f,"Enter Amount");
+                    String price = JOptionPane.showInputDialog(f,"Enter Price of Individual Item");
+
+                    printWrite(product, amount, price);
                 }
                 else
                     JOptionPane.showMessageDialog(f,"You do not have Access");
             }
         }
+    }
+
+    public void printWrite(String product, String amount, String price)
+    {
+        PrintWriter writer = null;
+        FileWriter fw = null;
+        try
+        {
+            fw = new FileWriter("inventory.txt", true);
+            writer = new PrintWriter(fw);
+        }
+        catch (FileNotFoundException e)
+        {
+            System.out.println("File was not found");
+            System.exit(-1);
+        }
+        catch (IOException e)
+        {
+            System.out.println("No file was found");
+            System.exit(-1);
+        }
+        writer.println("");
+        writer.println(product);
+        writer.println(amount);
+        writer.println(price);
+        writer.close();
     }
 }
