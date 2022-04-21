@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.awt.event.*;
+import java.util.Random;
 
 public class PizzaMonster {
     private JTextArea statusLabel;
@@ -76,26 +77,19 @@ public class PizzaMonster {
                 {
                     itemName.add(end);
                     amount.add(Integer.parseInt(scan.nextLine()));
-                    cost.add(Double.parseDouble(scan.nextLine()));
+                    double c = Double.parseDouble(scan.nextLine());
+                    cost.add(c);
                     scan.nextLine();
-                }
-            }
-            scan.nextLine();
+                    weeklyItemName.add(end);
+                    Random rn = new Random();
+                    weeklyAmount.add(rn.nextInt(30)+1);
+                    weeklyCost.add(c);
 
-            //scan name, weekly amount and cost in to variable
-            for(int j = 0; j > -1; j++)
-            {
-                String end = scan.nextLine();
-                if (end.equals("end"))
+                }
+                if(scan.hasNext()){}
+                else
                 {
                     break;
-                }
-                for(int i = 0; i < 1; i++)
-                {
-                    weeklyItemName.add(end);
-                    weeklyAmount.add(Integer.parseInt(scan.nextLine()));
-                    weeklyCost.add(Double.parseDouble(scan.nextLine()));
-                    scan.nextLine();
                 }
             }
         } catch (FileNotFoundException e) {
